@@ -14,7 +14,7 @@ namespace MyVet.Web.Models
         [MinLength(6)]
         public string Password { get; set; }
 
-        [Display(Name = "Se souvenir de moi")]
+        [Display(Name = "Se souvenir de moi ?")]
         public bool RememberMe { get; set; }
     }
 }
