@@ -23,11 +23,13 @@ namespace MyVet.Web.Data
         {
             await _dataContext.Database.EnsureCreatedAsync();
             await CheckRoles();
-            var manager = await CheckUserAsync("1010", "Borgeah", "Matongo", "Brunelatwood@gmail.com", "02 37 56 84", "campus iai", "Admin");
-            var customer = await CheckUserAsync("2020", "Grace", "Essie", "grace33@hotmail.com", "07 41 93 23", "carrefour iai", "Customer");
+            var manager = await CheckUserAsync("1010", "Borgeah", "Atwood", "borjessatwood@gmail.com", "02 37 56 84", "campus iai", "Admin");
+            var customer = await CheckUserAsync("2020", "Grace", "Essie", "grace33@hotmail.com", "07 41 93 23", "cité rose, owendo", "Customer");
+            var customer1 = await CheckUserAsync("41258", "Ahsta", "Austalie", "ashta@gmail.com", "06 62 67 80", "och, plateaux des 15 ans", "Customer");
             await CheckPetTypesAsync();
             await CheckServiceTypesAsync();
             await CheckOwnerAsync(customer);
+            await CheckOwnerAsync(customer1);
             await CheckManagerAsync(manager);
             await CheckPetsAsync();
             await CheckAgendasAsync();
@@ -91,6 +93,7 @@ namespace MyVet.Web.Data
             {
                 _dataContext.PetTypes.Add(new PetType { Name = "Chien" });
                 _dataContext.PetTypes.Add(new PetType { Name = "Chat" });
+                //_dataContext.PetTypes.Add(new PetType { Name = "Lapin" });
                 await _dataContext.SaveChangesAsync();
             }
         }

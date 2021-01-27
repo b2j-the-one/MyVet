@@ -21,16 +21,19 @@ namespace MyVet.Web.Helpers
             _signInManager = signInManager;
         }
 
+        // Créer l'utilisateur
         public async Task<IdentityResult> AddUserAsync(User user, string password)
         {
             return await _userManager.CreateAsync(user, password);
         }
 
+        // Créer le rôle utilisateur
         public async Task AddUserToRoleAsync(User user, string roleName)
         {
             await _userManager.AddToRoleAsync(user, roleName);
         }
 
+        // Vérifier le rôle
         public async Task CheckRoleAsync(string roleName)
         {
             var roleExists = await _roleManager.RoleExistsAsync(roleName);
@@ -43,17 +46,20 @@ namespace MyVet.Web.Helpers
             }
         }
 
+        // Trouver utilisateur par son email
         public async Task<User> GetUserByEmailAsync(string email)
         {
             var user = await _userManager.FindByEmailAsync(email);
             return user;
         }
 
+        // Définir le rôle
         public async Task<bool> IsUserInRoleAsync(User user, string roleName)
         {
             return await _userManager.IsInRoleAsync(user, roleName);
         }
 
+        // Se connecter
         public async Task<SignInResult> LoginAsync(LoginViewModel model)
         {
             return await _signInManager.PasswordSignInAsync(
@@ -63,9 +69,29 @@ namespace MyVet.Web.Helpers
                 false);
         }
 
+        // Se déconnecter
         public async Task LogoutAsync()
         {
             await _signInManager.SignOutAsync();
+        }
+
+        // Supprimer utilisateur
+        public async Task<bool> DeleteUserAsync(string email)
+        {
+            var user = await GetUserByEmailAsync(email);
+            if (user == null)
+            {
+                return true;
+            }
+
+            var response = await _userManager.DeleteAsync(user);
+            return response.Succeeded;
+        }
+
+        // MAJ utilisateur
+        public async Task<IdentityResult> UpdateUserAsync(User user)
+        {
+            return await _userManager.UpdateAsync(user);
         }
     }
 }

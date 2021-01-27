@@ -36,8 +36,10 @@
                     @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                     {
                         <li><a asp-area="" asp-controller="Owners" asp-action="Index">Propriétaires</a></li>
-                        <li><a asp-area="" asp-controller="Agenda" asp-action="Index">Agendas</a></li>
                         <li><a asp-area="" asp-controller="Managers" asp-action="Index">Gérants</a></li>
+                        <li><a asp-area="" asp-controller="Agenda" asp-action="Index">Agendas</a></li>
+                        <li><a asp-area="" asp-controller="PetTypes" asp-action="Index">Types animaux</a></li>
+                        <li><a asp-area="" asp-controller="ServiceTypes" asp-action="Index">Services</a></li>
                     }
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -61,7 +63,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2020 - MonVéto Powered by B2J</p>
+            <p>&copy; @DateTime.Now.Year - MonVéto Powered by B2J</p>
         </footer>
     </div>
 

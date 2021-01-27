@@ -1,0 +1,26 @@
+﻿@model MyVet.Web.Models.PetViewModel
+
+@{
+    ViewData["Title"] = "Nouvel animal";
+}
+
+<h2 class="text-center">Ajouter un nouvel animal</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddPet" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="OwnerId" />
+
+            <partial name="_Pet" />
+
+            <div class="form-group">
+                <input type="submit" value="Créer" class="btn btn-primary" />
+                <a asp-action="Details" asp-route-id="@Model.OwnerId" class="btn btn-success">Revenir à la liste</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+

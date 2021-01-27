@@ -15,6 +15,7 @@ namespace MyVet.Web.Controllers
             _userHelper = userHelper;
         }
 
+        [HttpGet]
         public IActionResult Login()
         {
             if (User.Identity.IsAuthenticated)
@@ -40,12 +41,15 @@ namespace MyVet.Web.Controllers
 
                     return RedirectToAction("Index", "Home");
                 }
+
+                ModelState.AddModelError(string.Empty, "Login ou mot de passe incorrect.");
+                model.Password = string.Empty;
             }
 
-            ModelState.AddModelError(string.Empty, "Failed to login.");
             return View(model);
         }
 
+        [HttpGet]
         public async Task<IActionResult> Logout()
         {
             await _userHelper.LogoutAsync();
