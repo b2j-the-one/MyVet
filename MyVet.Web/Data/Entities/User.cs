@@ -5,7 +5,7 @@ namespace MyVet.Web.Data.Entities
 {
     public class User : IdentityUser
     {
-        [Display(Name = "Document")]
+        [Display(Name = "Dossier")]
         [MaxLength(30, ErrorMessage = "Le champ {0} ne peut pas avoir plus de {1} caractères.")]
         [Required(ErrorMessage = "Le champ {0} est obligatoire.")]
         public string Document { get; set; }
